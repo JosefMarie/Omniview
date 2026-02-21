@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Digital Tickets | OmniView Cinema</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Be Vietnam Pro", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation Bar -->
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2b2839] px-4 md:px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">OmniView</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-[#a19db9] flex border-none bg-[#2b2839] items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#2b2839] focus:border-none h-full placeholder:text-[#a19db9] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search movies..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-[#a19db9] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Movies</a>
+<a class="text-[#a19db9] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Theaters</a>
+<a class="text-white text-sm font-bold leading-normal border-b-2 border-primary pb-1" href="#">My Tickets</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-[#2b2839] text-white hover:bg-[#3b384d] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwmvLoJzRRX9uw3Z83j3bWWAcMf1_5chrmozrXMrqSluAiQJ2To7HCzTXraRonIGWs4lTTw1_sr14gLlthzDlJKUTELcyQW9FRML0UxCoBBE-lqZyX7xq7XlihoZtKLxwCfIlLoP3EhkhAHWWZs1ozeTZbptVk2c9CvRCcCVls5UAnXYi_ovzI2rqvP8ZYX3yGqrVvvm5Tarfq7ysM30pyKXgOW8IsbeP13_gbXzBd4d12KkhDfyGs6trsYHtLO5MJ3J1K8rm6YrC5");'></div>
+</div>
+</div>
+</header>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-3 p-4 mt-6">
+<div class="flex min-w-72 flex-col gap-3">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">My Digital Tickets</h1>
+<p class="text-[#a19db9] text-base font-normal leading-normal">Manage your active bookings and entry passes for upcoming screenings</p>
+</div>
+</div>
+<!-- Highlighted Active Entry -->
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Up Next</h2>
+<div class="p-4">
+<div class="flex flex-col md:flex-row items-stretch justify-between gap-6 rounded-xl bg-gradient-to-br from-[#1d1c27] to-[#16151f] border border-primary/20 p-6 shadow-2xl relative overflow-hidden">
+<!-- Movie Info -->
+<div class="flex flex-[2_2_0px] flex-col justify-between gap-6 z-10">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Active Entry</span>
+<span class="text-[#a19db9] text-xs font-medium uppercase tracking-widest">Entry Code: OMNI-8821-X</span>
+</div>
+<h3 class="text-white text-3xl font-black leading-tight">Dune: Part Two</h3>
+<div class="flex flex-col gap-1 text-[#a19db9]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<p class="text-base font-medium">Tonight, March 15th</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<p class="text-base font-medium">7:30 PM • 2h 46m</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<p class="text-base font-medium">OmniView Cinema • Screen 1 (IMAX)</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 border-t border-white/5 pt-6">
+<div>
+<p class="text-[#a19db9] text-xs font-normal leading-normal uppercase">Section</p>
+<p class="text-white text-lg font-bold leading-normal">Premium</p>
+</div>
+<div>
+<p class="text-[#a19db9] text-xs font-normal leading-normal uppercase">Row</p>
+<p class="text-white text-lg font-bold leading-normal">H</p>
+</div>
+<div>
+<p class="text-[#a19db9] text-xs font-normal leading-normal uppercase">Seat</p>
+<p class="text-white text-lg font-bold leading-normal">12</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="flex items-center justify-center bg-primary hover:bg-primary/90 text-white rounded-xl h-12 px-6 gap-2 text-sm font-bold transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">download</span>
+<span>Download PDF Ticket</span>
+</button>
+<button class="flex items-center justify-center bg-[#2b2839] hover:bg-[#3b384d] text-white rounded-xl h-12 px-6 gap-2 text-sm font-bold transition-all">
+<span class="material-symbols-outlined">share</span>
+<span>Share Ticket</span>
+</button>
+</div>
+</div>
+<!-- QR Code & Poster Section -->
+<div class="flex flex-1 flex-col items-center justify-center gap-4 bg-white rounded-xl p-6 min-w-[240px] shadow-inner">
+<div class="bg-white p-2">
+<!-- Using an abstract pattern to represent a high-res QR Code -->
+<div class="size-48 bg-center bg-no-repeat bg-contain" data-alt="High resolution QR code for entry verification" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2zdRtMNmxbCKaHAIPZCTWLn0akSO1InEuxQ6zoJ6Qfx5PezsTh4yk0530tR1NXcliIRJoEucGjZk39ubIAFOvV25C0JKF9TEXlri6OJfwal5V2aviXkLVf_y8VaIZpq_VzhmDRMnBC9lO8ds5KdK-D0WvAzrahTH50wbSEN90c0327U4zM_OeN7GXcdEenZxRspZJKMPR69S0BzeF0CHmcu_qnx6X4sSOBFsGjpMRe_FR6KzLw8eDGurg5P9Tg-w4WqOJlzOVCflx");'></div>
+</div>
+<p class="text-black text-xs font-bold uppercase tracking-widest opacity-60">Scan at Entrance</p>
+</div>
+</div>
+</div>
+<!-- Other Tickets Section -->
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-8">Upcoming Bookings</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+<!-- Ticket Card 1 -->
+<div class="flex flex-col gap-0 rounded-xl bg-[#1d1c27] border border-white/5 hover:border-primary/30 transition-all group">
+<div class="flex items-stretch justify-between p-4 gap-4">
+<div class="flex flex-[2_2_0px] flex-col justify-between gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-[#a19db9] text-[10px] font-bold leading-normal uppercase tracking-widest">In 3 Days</p>
+<p class="text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Oppenheimer</p>
+<p class="text-[#a19db9] text-sm font-normal leading-normal">Mar 18 at 8:15 PM • Screen 4</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 flex-row-reverse bg-[#2b2839] hover:bg-primary transition-colors text-white gap-2 text-sm font-medium w-fit">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="truncate">PDF</span>
+</button>
+</div>
+<div class="w-32 bg-center bg-no-repeat aspect-[2/3] bg-cover rounded-lg flex-none" data-alt="Oppenheimer movie poster" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3B04reCWvn_7FvP6fh1JMPEsuqgWWc9gMlW_RMzNiCcnY6v43amVAD3e0QLkadc4oT1uNTaA_5qNiRNrDi-ViD3rLIPdr57Tnb1WJZygLXt-TVMFyWYMxURuKUQZxg-QtVMAfkuJcHj0mGdDijY3YayZ4vEZUg8RG-jCSCCTtrETXXMYAZQKB6G8dWFfT4faLeflGArj1L0SsMYVvZUyEVosgzm4CG-Zsy41jTCBqSQsgRlkemDQAIvsfb7s51Kh48GxAx8oesUEi");'></div>
+</div>
+<div class="px-4 pb-4">
+<div class="flex justify-between border-t border-white/5 pt-3">
+<div class="text-center flex-1">
+<p class="text-[#a19db9] text-[10px] uppercase">Row</p>
+<p class="text-white text-sm font-bold">J</p>
+</div>
+<div class="text-center flex-1 border-x border-white/5">
+<p class="text-[#a19db9] text-[10px] uppercase">Seat</p>
+<p class="text-white text-sm font-bold">24, 25</p>
+</div>
+<div class="text-center flex-1">
+<p class="text-[#a19db9] text-[10px] uppercase">Class</p>
+<p class="text-white text-sm font-bold">VIP</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Ticket Card 2 -->
+<div class="flex flex-col gap-0 rounded-xl bg-[#1d1c27] border border-white/5 hover:border-primary/30 transition-all group">
+<div class="flex items-stretch justify-between p-4 gap-4">
+<div class="flex flex-[2_2_0px] flex-col justify-between gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-[#a19db9] text-[10px] font-bold leading-normal uppercase tracking-widest">Next Week</p>
+<p class="text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Poor Things</p>
+<p class="text-[#a19db9] text-sm font-normal leading-normal">Mar 22 at 6:00 PM • Screen 2</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 flex-row-reverse bg-[#2b2839] hover:bg-primary transition-colors text-white gap-2 text-sm font-medium w-fit">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="truncate">PDF</span>
+</button>
+</div>
+<div class="w-32 bg-center bg-no-repeat aspect-[2/3] bg-cover rounded-lg flex-none" data-alt="Poor Things movie poster" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADYKw-TgDdhwvuVHZylCBAl3z65dSRqFWzwD3XhCFRYF0kmnBH20bus9YuDW62YfgrCkisXH7Wfj4AxKrY3YB_CfmrcJd5MXIu4NW9eoo_n2z_dUKrbwpEeaQpSDjCimFIZ4yIhFKSabH4jLxmgL8bptq0n3JOdS4uMHGg_h_mUXgFVwoOfiYg-lsZcPrD0Z3gIHN8ZDdZ1YIg_3y8c9nMokN2KsXGQeNySfZuBSSlwXIFs1ZPeD3wIEjbwQUAagZPya1ez7wBxyEN");'></div>
+</div>
+<div class="px-4 pb-4">
+<div class="flex justify-between border-t border-white/5 pt-3">
+<div class="text-center flex-1">
+<p class="text-[#a19db9] text-[10px] uppercase">Row</p>
+<p class="text-white text-sm font-bold">C</p>
+</div>
+<div class="text-center flex-1 border-x border-white/5">
+<p class="text-[#a19db9] text-[10px] uppercase">Seat</p>
+<p class="text-white text-sm font-bold">04</p>
+</div>
+<div class="text-center flex-1">
+<p class="text-[#a19db9] text-[10px] uppercase">Class</p>
+<p class="text-white text-sm font-bold">Standard</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- History Link -->
+<div class="p-4 mt-4 mb-20 text-center">
+<button class="text-primary hover:text-primary/80 font-bold text-sm flex items-center justify-center gap-2 mx-auto">
+<span>View Ticket History</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Footer -->
+<footer class="border-t border-white/5 py-10 px-4 text-center">
+<p class="text-[#a19db9] text-xs">© 2024 OmniView Cinema Systems. All rights reserved.</p>
+<div class="flex justify-center gap-6 mt-4">
+<a class="text-[#a19db9] hover:text-white text-xs" href="#">Terms of Service</a>
+<a class="text-[#a19db9] hover:text-white text-xs" href="#">Privacy Policy</a>
+<a class="text-[#a19db9] hover:text-white text-xs" href="#">Help Center</a>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>

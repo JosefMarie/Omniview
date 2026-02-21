@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OmniView - User Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#3211d4",
+              "background-light": "#f6f6f8",
+              "background-dark": "#131022",
+            },
+            fontFamily: {
+              "display": ["Be Vietnam Pro", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-modal {
+            background: rgba(19, 16, 34, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
+<!-- Background Layer: Blurred Map/Seat Selection -->
+<div class="fixed inset-0 z-0">
+<div class="relative w-full h-full bg-cover bg-center grayscale opacity-40 blur-sm" data-alt="Blurred cinema seating chart and movie theater interior" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAa8NQ4_AOunewU6zxnkrDAhugWJXLvS1OEntteB8wxD0y7iwaWlzAJlBt-b_U5V5IWldukbKcN855EvinLvI7hsaQMvHiFxz3VCh5vA0UNRMwGaGbCiEKOV4DVZf5i3cvVs1JuByoxTzIpxP_pNt2Uw6SqzgcImyeGg9JepCh_lEAQ5v-QwKBZjde04oGR5g_pQxrwDsq3f-rRccXoSbV2pMR9GXyuncV_tss3aj3qAYqRlYKW8oKyyItJL4jVV5ahICj7mkrTnY_s");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-background-dark/80 via-transparent to-background-dark/90"></div>
+</div>
+<!-- UI Interaction Overlay (Visual context only) -->
+<div class="fixed top-8 right-8 z-10 flex flex-col gap-3">
+<div class="flex flex-col gap-1">
+<button class="flex size-12 items-center justify-center rounded-t-xl bg-[#1d1c27]/80 backdrop-blur-sm shadow-xl text-white">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="flex size-12 items-center justify-center rounded-b-xl bg-[#1d1c27]/80 backdrop-blur-sm shadow-xl text-white">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="flex size-12 items-center justify-center rounded-xl bg-[#1d1c27]/80 backdrop-blur-sm shadow-xl text-white">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+<!-- Main Content Area -->
+<main class="relative z-20 flex min-h-screen items-center justify-center px-4 py-12">
+<div class="glass-modal w-full max-w-[480px] rounded-xl p-8 md:p-12 shadow-2xl">
+<!-- Branding & Heading -->
+<div class="flex flex-col items-center text-center mb-10">
+<div class="bg-primary p-3 rounded-xl mb-4 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-3xl">confirmation_number</span>
+</div>
+<h1 class="text-4xl font-black leading-tight tracking-[-0.033em] text-white">OmniView</h1>
+<p class="text-[#a19db9] text-base font-normal leading-normal mt-2">Welcome back, Movie Lover</p>
+</div>
+<!-- Login Form -->
+<form class="flex flex-col gap-5">
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="text-white text-sm font-medium leading-normal px-1">Email Address</label>
+<div class="relative">
+<input class="form-input w-full rounded-xl text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#3f3b54] bg-[#1d1c27]/60 h-14 placeholder:text-[#a19db9] px-4 text-base font-normal leading-normal" placeholder="Enter your email" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<label class="text-white text-sm font-medium leading-normal px-1">Password</label>
+<div class="flex w-full items-stretch rounded-xl overflow-hidden border border-[#3f3b54] focus-within:ring-2 focus-within:ring-primary">
+<input class="form-input w-full min-w-0 flex-1 resize-none border-none bg-[#1d1c27]/60 text-white focus:outline-0 focus:ring-0 h-14 placeholder:text-[#a19db9] px-4 text-base font-normal leading-normal" placeholder="Enter your password" type="password"/>
+<button class="text-[#a19db9] bg-[#1d1c27]/60 flex items-center justify-center px-4 transition-colors hover:text-white" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password -->
+<div class="flex justify-end -mt-2">
+<a class="text-[#a19db9] text-sm font-normal leading-normal hover:text-white transition-colors underline" href="#">Forgot Password?</a>
+</div>
+<!-- Action Button -->
+<button class="mt-4 flex h-14 w-full items-center justify-center rounded-xl bg-primary text-white text-base font-bold tracking-wide shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all active:scale-[0.98]" type="submit">
+                    Sign In
+                </button>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-8">
+<div class="h-[1px] flex-1 bg-[#3f3b54]"></div>
+<span class="text-[#a19db9] text-xs font-medium uppercase tracking-widest">Or continue with</span>
+<div class="h-[1px] flex-1 bg-[#3f3b54]"></div>
+</div>
+<!-- Social Login -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex h-12 items-center justify-center gap-2 rounded-xl border border-[#3f3b54] bg-[#1d1c27]/40 text-white transition-colors hover:bg-[#1d1c27]">
+<span class="material-symbols-outlined text-lg">google</span>
+<span class="text-sm font-medium">Google</span>
+</button>
+<button class="flex h-12 items-center justify-center gap-2 rounded-xl border border-[#3f3b54] bg-[#1d1c27]/40 text-white transition-colors hover:bg-[#1d1c27]">
+<span class="material-symbols-outlined text-lg">ios</span>
+<span class="text-sm font-medium">Apple</span>
+</button>
+</div>
+<!-- Toggle Register -->
+<div class="mt-10 text-center">
+<p class="text-[#a19db9] text-sm">
+                    New to OmniView? 
+                    <a class="text-white font-bold hover:underline ml-1" href="#">Create an account</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Footer Meta -->
+<footer class="fixed bottom-6 w-full text-center z-20 pointer-events-none">
+<p class="text-[#a19db9]/50 text-xs font-normal">
+            © 2024 OmniView Cinema Systems. All rights reserved.
+        </p>
+</footer>
+</body></html>

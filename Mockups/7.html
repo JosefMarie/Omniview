@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OmniView Analytics Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2a60d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#0a0a0a",
+                        "surface-dark": "#1a1a1a",
+                        "accent-teal": "#00f5d4",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .grid-dot { width: 8px; height: 8px; border-radius: 2px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex">
+<!-- Sidebar Navigation Rail -->
+<aside class="w-20 lg:w-64 border-r border-slate-200 dark:border-white/10 flex flex-col h-screen sticky top-0 bg-background-light dark:bg-surface-dark transition-all duration-300">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg">
+<span class="material-symbols-outlined text-black font-bold">movie</span>
+</div>
+<div class="hidden lg:block">
+<h1 class="font-bold text-lg tracking-tight">OmniView</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Cinema Intelligence</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="hidden lg:block font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="hidden lg:block font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="hidden lg:block font-medium">Scheduling</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="hidden lg:block font-medium">Ticketing</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="hidden lg:block font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-white/10">
+<button class="flex items-center gap-3 px-3 py-3 w-full rounded-xl text-red-500 hover:bg-red-500/10 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="hidden lg:block font-medium">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="h-16 border-b border-slate-200 dark:border-white/10 px-8 flex items-center justify-between bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-10">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full bg-slate-100 dark:bg-white/5 border-none rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary transition-all" placeholder="Search halls, movies or staff..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded-full text-xs font-bold border border-emerald-500/20">
+<span class="size-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    SYSTEM HEALTH: OPTIMAL
+                </div>
+<button class="relative text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-background-dark"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-white/10">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold">Alex Rivera</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Admin</p>
+</div>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-primary/20" data-alt="User profile picture showing a professional male" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSMVBNaGwEKLohqxt3qOEyCDpWczioGWu-yuITi0oi6OYqrN1xsSu3nkpzUhrbI8lgEuyYLMNg05oJsiU-_4ydAV2MOougEQBAj8kWiL2Y4YdV6kNB_CRSAkM6ia-Vg8j0elwvTJh00i1xZJxmFLu_3RmxlevadUL-un7vcYDUpMxyiJRYrcbWu_J7wUZMatXhxZzFk_x15VbYq4qgUcAAjxUMSX_Zv56IBrTcSAXzNpkXaCSMclX_0AQZlUGrFEDHBRiyVnlKWw75');"></div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 space-y-8 max-w-[1600px] mx-auto w-full">
+<!-- Section: Now Playing Status -->
+<section>
+<div class="flex items-center justify-between mb-4 px-1">
+<h2 class="text-xl font-bold tracking-tight">Now Playing - Real-time Hall Status</h2>
+<button class="text-primary text-sm font-semibold flex items-center gap-1 hover:underline">View All Halls <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Hall 1 -->
+<div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h3 class="font-bold text-sm">Hall 01</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Dune: Part Two</p>
+</div>
+<span class="text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded-full font-bold">65% FULL</span>
+</div>
+<!-- Mini Heatmap Representation -->
+<div class="grid grid-cols-10 gap-1 mb-3">
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div>
+</div>
+<div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+<span>14:30 Show</span>
+<span class="text-accent-teal">Ends in 42m</span>
+</div>
+</div>
+<!-- Hall 2 -->
+<div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h3 class="font-bold text-sm">Hall 02</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Avatar: Way of Water</p>
+</div>
+<span class="text-[10px] bg-red-500/20 text-red-500 px-2 py-0.5 rounded-full font-bold">92% FULL</span>
+</div>
+<div class="grid grid-cols-10 gap-1 mb-3">
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+</div>
+<div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+<span>15:00 Show</span>
+<span class="text-accent-teal">Starts in 12m</span>
+</div>
+</div>
+<!-- Hall 3 -->
+<div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h3 class="font-bold text-sm">Hall 03</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">The Batman</p>
+</div>
+<span class="text-[10px] bg-white/10 text-slate-400 px-2 py-0.5 rounded-full font-bold">45% FULL</span>
+</div>
+<div class="grid grid-cols-10 gap-1 mb-3">
+<div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div>
+<div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div>
+</div>
+<div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+<span>16:15 Show</span>
+<span class="text-slate-500">In 2h 5m</span>
+</div>
+</div>
+<!-- Hall 4 -->
+<div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h3 class="font-bold text-sm">Hall 04</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Inception (Re-release)</p>
+</div>
+<span class="text-[10px] bg-red-500/20 text-red-500 px-2 py-0.5 rounded-full font-bold">SOLD OUT</span>
+</div>
+<div class="grid grid-cols-10 gap-1 mb-3">
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+</div>
+<div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+<span>14:45 Show</span>
+<span class="text-accent-teal">Cleaning Now</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Revenue & Alerts -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Revenue Trends Graph -->
+<div class="xl:col-span-2 bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-lg font-bold">Revenue Trends</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Weekly earnings vs projected targets</p>
+</div>
+<div class="flex bg-slate-100 dark:bg-white/5 p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-bold rounded-md bg-white dark:bg-white/10 shadow-sm">Daily</button>
+<button class="px-4 py-1.5 text-xs font-bold rounded-md text-slate-500">Weekly</button>
+<button class="px-4 py-1.5 text-xs font-bold rounded-md text-slate-500">Monthly</button>
+</div>
+</div>
+<!-- Fake Line Graph Visual -->
+<div class="relative h-64 w-full mt-4 flex items-end justify-between px-2">
+<!-- Background Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between py-2 pointer-events-none">
+<div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+<div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+<div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+<div class="border-t border-slate-100 dark:border-white/5 w-full"></div>
+</div>
+<!-- Stylized Path Visualization -->
+<svg class="absolute inset-0 h-full w-full" preserveaspectratio="none">
+<defs>
+<lineargradient id="line-grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#f2a60d" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#f2a60d" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,180 Q100,160 200,190 T400,120 T600,150 T800,80 T1000,100" fill="none" stroke="#f2a60d" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0,180 Q100,160 200,190 T400,120 T600,150 T800,80 T1000,100 V256 H0 Z" fill="url(#line-grad)"></path>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-[-24px] w-full flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-12 pt-6 border-t border-slate-100 dark:border-white/5">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Total Revenue</p>
+<p class="text-2xl font-bold">$124,592.00</p>
+<span class="text-xs text-emerald-500 flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% vs LW
+                            </span>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Avg Ticket Price</p>
+<p class="text-2xl font-bold">$14.50</p>
+<span class="text-xs text-slate-400 font-bold">No change</span>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Online Sales</p>
+<p class="text-2xl font-bold">84%</p>
+<span class="text-xs text-emerald-500 flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span> +5% vs LW
+                            </span>
+</div>
+</div>
+</div>
+<!-- Quick Alerts Panel -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm h-full flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold">Quick Alerts</h2>
+<span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">4 ACTIVE</span>
+</div>
+<div class="space-y-4 flex-1 overflow-y-auto scrollbar-hide">
+<!-- Critical Alert -->
+<div class="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-red-500">error</span>
+<div>
+<p class="text-sm font-bold text-red-500">Hardware Failure</p>
+<p class="text-xs text-slate-400 mt-1">Screen 3 Projector overheating. Auto-shutdown in 10 mins if not cooled.</p>
+<button class="mt-2 text-[10px] font-bold uppercase tracking-widest text-white bg-red-500 px-3 py-1 rounded">Dispatch Staff</button>
+</div>
+</div>
+</div>
+<!-- Warning Alert -->
+<div class="p-4 rounded-lg bg-primary/10 border border-primary/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary">warning</span>
+<div>
+<p class="text-sm font-bold text-primary">Low Ticket Sales</p>
+<p class="text-xs text-slate-400 mt-1">9:00 PM Show: "The Batman" only at 12% capacity. Consider promotion.</p>
+</div>
+</div>
+</div>
+<!-- Technical Info -->
+<div class="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-blue-500">info</span>
+<div>
+<p class="text-sm font-bold text-blue-500">Kiosk Offline</p>
+<p class="text-xs text-slate-400 mt-1">Entrance Kiosk #4 is not responding to pings. Manual reboot suggested.</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-slate-200 dark:border-white/10 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-50 dark:hover:bg-white/5 transition-all">
+                        CLEAR ALL NOTIFICATIONS
+                    </button>
+</div>
+</div>
+<!-- Section: Bird's Eye Seat Management Grid -->
+<section>
+<div class="flex items-center justify-between mb-6 px-1">
+<div>
+<h2 class="text-xl font-bold tracking-tight">Theater Bird's-Eye View</h2>
+<p class="text-sm text-slate-500">Live seat occupancy across all main sections</p>
+</div>
+<div class="flex items-center gap-4 text-xs font-bold text-slate-400">
+<div class="flex items-center gap-1.5"><div class="size-3 rounded-sm bg-white/10"></div> Available</div>
+<div class="flex items-center gap-1.5"><div class="size-3 rounded-sm bg-primary"></div> Occupied</div>
+<div class="flex items-center gap-1.5"><div class="size-3 rounded-sm bg-accent-teal"></div> Selected</div>
+<div class="flex items-center gap-1.5"><div class="size-3 rounded-sm bg-red-500"></div> VIP</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 bg-white dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-white/5">
+<!-- Top Left Section -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Section: Top Left</h3>
+<span class="text-[10px] text-emerald-500">82% Occupancy</span>
+</div>
+<div class="grid grid-cols-12 gap-2">
+<!-- Generator for grid items -->
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+</div>
+</div>
+<!-- Top Right Section -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Section: Top Right</h3>
+<span class="text-[10px] text-emerald-500">75% Occupancy</span>
+</div>
+<div class="grid grid-cols-12 gap-2">
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-accent-teal"></div><div class="grid-dot bg-accent-teal"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+</div>
+</div>
+<!-- Bottom Left Section -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Section: Bottom Left</h3>
+<span class="text-[10px] text-amber-500">42% Occupancy</span>
+</div>
+<div class="grid grid-cols-12 gap-2">
+<div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-red-500"></div><div class="grid-dot bg-red-500"></div><div class="grid-dot bg-red-500"></div><div class="grid-dot bg-red-500"></div><div class="grid-dot bg-red-500"></div><div class="grid-dot bg-red-500"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+</div>
+</div>
+<!-- Bottom Right Section -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Section: Bottom Right</h3>
+<span class="text-[10px] text-red-500">95% Occupancy</span>
+</div>
+<div class="grid grid-cols-12 gap-2">
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div>
+<div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-primary"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div><div class="grid-dot bg-white/10"></div>
+</div>
+</div>
+<!-- Screen Visual -->
+<div class="lg:col-span-2 mt-8 py-4 border-t-4 border-slate-700 rounded-t-[100px] text-center">
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-[1em] mt-2">Screen Area</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Info -->
+<footer class="p-8 mt-auto text-center border-t border-slate-200 dark:border-white/10">
+<p class="text-xs text-slate-500">© 2024 OmniView Cinema Systems. Advanced Analytics Dashboard v2.4.1</p>
+</footer>
+</main>
+</body></html>

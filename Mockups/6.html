@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Combo Creator Builder - OmniView Cinema</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2a60d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221c10",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Be Vietnam Pro", sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #393328;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen">
+<div class="layout-container flex flex-col min-h-screen">
+<!-- TopNavBar Component -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#393328] px-10 py-3 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] font-display">OmniView Cinema</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Movies</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Cinemas</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Offers</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Profile</a>
+</div>
+<button class="flex items-center justify-center rounded-xl h-10 bg-[#393328] text-white px-4 hover:bg-[#4a4335] transition-colors gap-2">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+<span class="text-sm font-bold">2 Items</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-10 xl:px-40 py-8 flex gap-8 max-w-[1440px] mx-auto w-full">
+<!-- Left Side: Selection Area -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- PageHeading -->
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] font-display">Build Your Own Combo</h1>
+<p class="text-[#bab09c] text-base font-normal leading-normal">Customize your cinema snack experience and save up to 20%.</p>
+</div>
+<!-- Tabs & Progress Combined -->
+<div class="bg-[#2d281f] rounded-xl p-1 border border-[#393328]">
+<div class="flex gap-1">
+<a class="flex-1 flex items-center justify-center gap-2 py-3 bg-primary rounded-lg text-background-dark" href="#">
+<span class="material-symbols-outlined text-lg">bubbles</span>
+<span class="text-sm font-bold">1. Popcorn</span>
+</a>
+<a class="flex-1 flex items-center justify-center gap-2 py-3 text-[#bab09c] hover:bg-[#393328] rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">local_drink</span>
+<span class="text-sm font-bold">2. Drink</span>
+</a>
+<a class="flex-1 flex items-center justify-center gap-2 py-3 text-[#bab09c] hover:bg-[#393328] rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">ice_skating</span>
+<span class="text-sm font-bold">3. Snacks</span>
+</a>
+</div>
+</div>
+<!-- ProgressBar Component -->
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between">
+<p class="text-white text-base font-medium leading-normal">Selecting Popcorn Size</p>
+<p class="text-primary text-sm font-bold leading-normal">Step 1 of 3</p>
+</div>
+<div class="rounded bg-[#544c3b] overflow-hidden h-2">
+<div class="h-2 rounded bg-primary" style="width: 33.33%;"></div>
+</div>
+<p class="text-[#bab09c] text-sm font-normal leading-normal">Coming up: Choose your beverage</p>
+</div>
+<!-- SectionHeader -->
+<div class="mt-4">
+<h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Select Popcorn Size</h2>
+<p class="text-[#bab09c] text-sm mt-1">Pick the perfect size for your movie marathon.</p>
+</div>
+<!-- Selection Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Size Large -->
+<div class="group relative bg-[#2d281f] border-2 border-primary rounded-xl overflow-hidden cursor-pointer transition-all hover:translate-y-[-4px]">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="" class="w-full h-full object-cover transition-transform group-hover:scale-110" data-alt="Large bucket of movie theater popcorn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqedfOj7UWuzK9SRagdbI0c0ObIbrrI-RZcL38puAumrPDdHqkc0IjkD4uOPyUtvZjzo3c6Eu4DeTJbt7XWkSWSy6kKdBRMa_6MmwGseA9VKl2B-CYL7leG6aQlLAhCpH8nQTCI14ZEmcyedKd9a6eWs9fsU6oLg5uGKMK7F4UUZuzccrTZxe-K2-61OR4nx18SbnZEkkvsTISJ2X8lYwHhgnQIuKhYi55Y9Yhy4xiXNfBiJEaVhrZDrXrd2xD9of5kh0QS0tX6x0R"/>
+</div>
+<div class="p-4 flex flex-col gap-1 bg-gradient-to-t from-background-dark to-transparent">
+<div class="flex justify-between items-center">
+<h3 class="text-lg font-bold">Large Bucket</h3>
+<span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded font-bold">POPULAR</span>
+</div>
+<p class="text-[#bab09c] text-xs">Best for sharing (170oz)</p>
+<p class="text-white font-bold mt-2">$12.50</p>
+</div>
+<div class="absolute top-3 right-3 bg-primary text-background-dark rounded-full p-1">
+<span class="material-symbols-outlined text-base font-bold">check</span>
+</div>
+</div>
+<!-- Size Medium -->
+<div class="group relative bg-[#2d281f] border border-[#393328] hover:border-primary/50 rounded-xl overflow-hidden cursor-pointer transition-all hover:translate-y-[-4px]">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all" data-alt="Medium tub of buttery popcorn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAtLk7ABH2uM70Xiy8X88kbX9AESlNfGl850ALiAhnZzoci4KfDCkeZu9N290hk8jm3vw9PJWmfvHSiTju9zOMVJ0WrvBupP9eHUjJOSl5kxYJ2Eahw5MfB_vlqYqqS32xxu4DbjZ7sIF_FB2GiYevzIaaDaCkB1tgEKwX19eIyYMOf9vMERvRQGolrktNbDbHx0WVFqdLlkufmBbiUGlOxA7T-TVskSlM4J4ZtDeOhGdzIu01oOxnztvhtkWoUNmQdLbB0ELmLDM8"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="text-lg font-bold">Medium Tub</h3>
+<p class="text-[#bab09c] text-xs">The classic choice (130oz)</p>
+<p class="text-white font-bold mt-2">$9.50</p>
+</div>
+</div>
+<!-- Size Small -->
+<div class="group relative bg-[#2d281f] border border-[#393328] hover:border-primary/50 rounded-xl overflow-hidden cursor-pointer transition-all hover:translate-y-[-4px]">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all" data-alt="Small bag of cinema popcorn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhn2vVgRga9gPSOXV3QbdygCP9b_Q9-XoCX1o_pOhCsrIxdHPv-9ENycz8wYCkzzyWxpiqTOY1gtYqbuI9Ga0qbnHzc3451Hl9gfBE0E2jW-q-s2eNXPYAc7q-rCdQTygGdQguSZM8lOixt_hr5lbtoh0BIpYTpEaffg-h4qFnmIYQIWTzAuCktalE5MlyItyAmjtbHARyA_cbOtgdS715DshnE8Gyx_fx2lSCbadCZJHT3Ll8wYSb6oXLi5Y3bxVczPdj87RArIaL"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="text-lg font-bold">Small Bag</h3>
+<p class="text-[#bab09c] text-xs">Just for one (85oz)</p>
+<p class="text-white font-bold mt-2">$7.00</p>
+</div>
+</div>
+</div>
+<!-- Flavor Selection Sub-header -->
+<div class="mt-8 border-t border-[#393328] pt-8">
+<h3 class="text-white text-xl font-bold mb-4">Select Flavor</h3>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-2 rounded-full border-2 border-primary bg-primary/10 text-primary font-bold transition-all">Butter</button>
+<button class="px-6 py-2 rounded-full border border-[#393328] text-white hover:border-primary transition-all">Salted</button>
+<button class="px-6 py-2 rounded-full border border-[#393328] text-white hover:border-primary transition-all">Sweet &amp; Salted</button>
+<button class="px-6 py-2 rounded-full border border-[#393328] text-white hover:border-primary transition-all">Caramel (+ $1.50)</button>
+</div>
+</div>
+<div class="flex justify-between items-center mt-12 py-6 border-t border-[#393328]">
+<button class="text-[#bab09c] font-bold flex items-center gap-2 hover:text-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span> Back to Cart
+                    </button>
+<button class="bg-primary text-background-dark px-10 py-3 rounded-xl font-black text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Next Step: Drinks
+                    </button>
+</div>
+</div>
+<!-- Right Side: Sticky Preview Panel -->
+<aside class="w-full max-w-[360px]">
+<div class="sticky top-[100px] bg-[#2d281f] rounded-2xl border border-[#393328] overflow-hidden flex flex-col shadow-2xl">
+<div class="p-6 bg-[#393328]/30">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+                            Your Combo Preview
+                        </h3>
+</div>
+<div class="p-6 flex flex-col gap-6 flex-1 min-h-[400px]">
+<!-- Visual Preview Area -->
+<div class="bg-background-dark/50 rounded-xl aspect-square flex items-center justify-center relative p-4 overflow-hidden">
+<!-- Background glow -->
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative w-full h-full flex flex-col items-center justify-center gap-2">
+<!-- Popcorn Placeholder/Image -->
+<img class="w-32 h-32 object-contain drop-shadow-2xl" data-alt="Large bucket of popcorn icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAurUFsXFwZTLdhTOiAVlbjsDCzXKOmfVlFPaDiCj2c8O1gxFdW1SUiOjulyzs9qdJEmnB64pq-rbnb4EiN4-vP_C7JSf6QwMVq5YtXZ_9sMQL7pPSDl9-6hQhMxCFMMG3k3AKPABtUaBSKd2xYrmHKv5PV4h2Ze4VTzA7kWKFDrm1jUDPkS5T0oHMvlSVLimNDvJOTtC5O-l66dmot5t4Zr_hZO87tDIysSBb6cdH-GOFrF5Y6ADqD6TgLbUGsCxw8Jr4_Sg3c6i42"/>
+<!-- Placeholder for Drink -->
+<div class="w-24 h-32 bg-background-dark/40 border-2 border-dashed border-[#544c3b] rounded-lg flex flex-col items-center justify-center text-[#544c3b]">
+<span class="material-symbols-outlined text-3xl">local_drink</span>
+<span class="text-[10px] uppercase font-black">Choose Drink</span>
+</div>
+<!-- Placeholder for Snack -->
+<div class="w-20 h-20 bg-background-dark/40 border-2 border-dashed border-[#544c3b] rounded-lg flex flex-col items-center justify-center text-[#544c3b] absolute -bottom-2 -right-2 transform rotate-12">
+<span class="material-symbols-outlined text-2xl">ice_skating</span>
+</div>
+</div>
+</div>
+<!-- Price Breakdown -->
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-[#bab09c]">Large Popcorn (Butter)</span>
+<span>$12.50</span>
+</div>
+<div class="flex justify-between items-center text-sm italic">
+<span class="text-[#bab09c]">Drink Selection</span>
+<span class="text-primary">--</span>
+</div>
+<div class="flex justify-between items-center text-sm italic">
+<span class="text-[#bab09c]">Snack Selection</span>
+<span class="text-primary">--</span>
+</div>
+<div class="h-[1px] bg-[#393328] my-2"></div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-primary font-bold">Bundle Savings (20%)</span>
+<span class="text-primary font-bold">-$2.50</span>
+</div>
+<div class="flex justify-between items-end mt-2">
+<div class="flex flex-col">
+<span class="text-xs text-[#bab09c] font-medium">Estimated Total</span>
+<span class="text-3xl font-black text-white">$10.00</span>
+</div>
+<div class="bg-primary px-3 py-1 rounded text-background-dark text-xs font-black">
+                                    COMBO PRICE
+                                </div>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0">
+<button class="w-full py-4 bg-[#393328] text-[#544c3b] rounded-xl font-bold flex items-center justify-center gap-2 cursor-not-allowed group transition-all" disabled="">
+                            Confirm Combo
+                            <span class="material-symbols-outlined">lock</span>
+</button>
+<p class="text-[10px] text-center mt-3 text-[#bab09c] uppercase tracking-widest font-medium">Complete all steps to unlock combo price</p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer / Cart Quick Bar (Mobile/Condensed version) -->
+<footer class="md:hidden sticky bottom-0 bg-background-dark border-t border-[#393328] p-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-[#bab09c]">Combo Total</span>
+<span class="text-xl font-bold text-primary">$10.00</span>
+</div>
+<button class="bg-primary text-background-dark px-6 py-2 rounded-lg font-bold">
+                Next
+            </button>
+</footer>
+</div>
+</body></html>

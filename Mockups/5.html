@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Purchase Confirmation Success - OmniView Cinema</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro"],
+                        "sans": ["Be Vietnam Pro", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;
+        }
+        .cinematic-bg {
+            background: radial-gradient(circle at top right, rgba(50, 17, 212, 0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(50, 17, 212, 0.1), transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 md:px-20 py-4 bg-background-light dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight font-display">OmniView Cinema</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Movies</a>
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Cinemas</a>
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Offers</a>
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Support</a>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="User profile avatar with professional look" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7v38TqzDx1B5fnFuDmle1Hdk0a6e1AhRDMkY_37MkIwkYLGBJSICh6jaIdwRQ2FlpcyRBVnn3TeXqvedUVV3VeR225qT9RiAs9r2w6iQOZL9-Hc-Mw8N8UDySiXwZFpKq1PullSOHLlcU1PsMdEaivQgv9U6C6nUnG-G9IS31FBTdIGzscyb2zScW4SyZPc3wc703NdziN0WU8l27dAonySJ9b1kJIioGaVmhv5fJRQU7QuBLSmqirVQhSi9a7QqoWzOUROsC1Ee4");'>
+</div>
+</div>
+</header>
+<!-- Success Content Area -->
+<main class="flex-1 cinematic-bg flex items-center justify-center py-12 px-4">
+<div class="max-w-[800px] w-full flex flex-col items-center">
+<!-- Success Icon & Headline -->
+<div class="mb-8 flex flex-col items-center">
+<div class="size-24 bg-primary/20 rounded-full flex items-center justify-center mb-6 border border-primary/30 shadow-[0_0_30px_rgba(50,17,212,0.3)]">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;">check_circle</span>
+</div>
+<h1 class="text-white tracking-tight text-4xl md:text-5xl font-bold leading-tight text-center font-display">Booking Confirmed!</h1>
+<p class="text-white/60 text-lg font-normal leading-normal mt-3 text-center max-w-lg">
+                    Your cinematic journey begins soon. A copy of your receipt has been sent to your email address.
+                </p>
+</div>
+<!-- Booking Summary Card -->
+<div class="w-full @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row shadow-2xl bg-[#1d1c27] border border-white/5 overflow-hidden">
+<!-- Movie Poster/Thumbnail -->
+<div class="w-full @xl:w-2/5 bg-center bg-no-repeat aspect-video @xl:aspect-[4/5] bg-cover" data-alt="Interstellar movie anniversary edition poster artwork" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBRGzV1Q4Y7DrfI0afk9-U48Xg2Itmu_HDiw4Xa6g3xDZ3pwtPLx1A8xHEyx8-Kqutz0jKo_yKgePNgLBP2djK-A5zzzXJTfBxptp4CJzaERGbFL5RMmvI3POj5ghGN1UERVnRzRZt89M2nh4h0X9O9Jx61IPvT03-HIXSpX1Z25GL-h0_EXiH6UHd0ASuNNU6hZ4n0jQrwF6R-VuKHJ8h3IzCDy3VsNf_PVgmBlJGcUTyRhAA7B4QFCp5YN1tOIlzd9CxqJz6cNG5a");'>
+</div>
+<!-- Booking Details -->
+<div class="flex w-full flex-col justify-between p-6 md:p-8">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider rounded-full border border-primary/30">Confirmed</span>
+<span class="text-white/40 text-sm font-mono">ID: #OV-882910</span>
+</div>
+<h3 class="text-white text-2xl font-bold leading-tight tracking-tight mb-4 font-display">Interstellar: Anniversary Edition</h3>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/80">calendar_today</span>
+<div>
+<p class="text-white/90 text-sm font-bold">Saturday, Oct 24, 2023</p>
+<p class="text-white/50 text-xs">Starts at 7:30 PM</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/80">location_on</span>
+<div>
+<p class="text-white/90 text-sm font-bold">OmniView Premiere - Screen 4</p>
+<p class="text-white/50 text-xs">Downtown Metropolitan Plaza</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/80">event_seat</span>
+<div>
+<p class="text-white/90 text-sm font-bold">Seats H12, H13</p>
+<p class="text-white/50 text-xs">Executive Leather Recliners</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-white/10">
+<div class="flex-1 text-center sm:text-left">
+<p class="text-white/40 text-xs uppercase tracking-widest font-bold">Total Paid</p>
+<p class="text-white text-2xl font-bold">$34.50</p>
+</div>
+<button class="w-full sm:w-auto flex min-w-[180px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-12 px-6 bg-primary hover:bg-primary/90 transition-all text-white text-base font-bold shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-xl">qr_code_2</span>
+<span class="truncate">View My Tickets</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="mt-10 flex flex-col items-center gap-6">
+<div class="flex flex-wrap justify-center gap-4 px-4">
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-11 px-6 bg-[#2b2839] hover:bg-[#38344a] text-white text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-lg">print</span>
+<span class="truncate">Print Receipt</span>
+</button>
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl h-11 px-6 bg-transparent hover:bg-white/5 text-white/70 hover:text-white text-sm font-bold transition-all border border-white/10">
+<span class="material-symbols-outlined text-lg">movie</span>
+<span class="truncate">Browse More Movies</span>
+</button>
+</div>
+<a class="text-primary/80 hover:text-primary text-sm font-medium underline underline-offset-4 transition-colors" href="#">
+                    Back to Home Page
+                </a>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="py-8 border-t border-white/5 bg-background-light dark:bg-background-dark/50">
+<div class="max-w-[960px] mx-auto px-10 text-center">
+<p class="text-white/30 text-xs">
+                © 2023 OmniView Cinema Group. All rights reserved. 
+                <span class="mx-2">|</span> 
+                Need help? <a class="text-white/50 hover:text-white" href="#">Contact Support</a>
+</p>
+</div>
+</footer>
+</body></html>

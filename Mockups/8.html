@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OmniView Operational Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2a60d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#181611",
+                        "surface-dark": "#27231b",
+                        "border-dark": "#393328"
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .timeline-grid { background-size: 100px 100%; background-image: linear-gradient(to right, #393328 1px, transparent 1px); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-64 flex flex-col border-r border-border-dark bg-background-dark shrink-0">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<div class="flex gap-3 items-center px-2">
+<div class="bg-primary rounded-lg p-1">
+<span class="material-symbols-outlined text-background-dark font-bold">theater_comedy</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-none">OmniView Admin</h1>
+<p class="text-[#bab09c] text-xs font-normal mt-1">System Controller</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#bab09c] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<p class="text-sm font-medium">Screening Schedule</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#bab09c] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">movie</span>
+<p class="text-sm font-medium">Movie Library</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#bab09c] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<p class="text-sm font-medium">Reports</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#bab09c] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<div class="rounded-xl bg-surface-dark p-3 border border-border-dark">
+<p class="text-[10px] uppercase tracking-wider text-[#bab09c] font-bold">Server Load</p>
+<div class="h-1.5 w-full bg-border-dark rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+</div>
+<button class="flex w-full cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-primary text-background-dark text-sm font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span>System Online</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between border-b border-border-dark px-8 py-4 bg-background-dark/50 backdrop-blur-md sticky top-0 z-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<span class="text-[#bab09c] text-sm">Admin</span>
+<span class="text-[#bab09c] text-sm">/</span>
+<span class="text-white text-sm font-semibold">Operational Dashboard</span>
+</div>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#bab09c] text-xl">search</span>
+<input class="w-full bg-surface-dark border-none rounded-xl py-2 pl-10 pr-4 text-sm text-white focus:ring-1 focus:ring-primary placeholder:text-[#bab09c]" placeholder="Search schedules..."/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="p-2 rounded-xl bg-surface-dark text-[#bab09c] hover:text-white border border-border-dark relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-background-dark"></span>
+</button>
+<button class="p-2 rounded-xl bg-surface-dark text-[#bab09c] hover:text-white border border-border-dark">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-px bg-border-dark mx-2"></div>
+<div class="flex items-center gap-3 bg-surface-dark border border-border-dark rounded-full pl-1 pr-3 py-1">
+<img class="size-8 rounded-full object-cover" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQZWXabJYJsHuCYWbjsKkFLqYby9nbYO64HabvUNdZ_kfuLHnKGL6k0RRb0QZM7sc_WOtcqD0ikxfxWS0GmW0OBGsu3p5rrf-2owl1-p7w77bhQkI4OH5-HBhex08YGP49a3EUy9BOf1BSKlyiQD9qxjGhbMh8r_Ea-OvEJdLVbMm0j7K-hV-Q21LgmskRzoPWmNe6di8n3XT_JoxJyz4xO3O7lvWgxP637pTxc1I752XiAjsOf6518BI-Jy6BMfPmwL8mNkGDCSaE"/>
+<span class="text-sm font-medium text-white">Alex Morgan</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 flex flex-col gap-8">
+<!-- Action Cards Grid -->
+<section>
+<h2 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+                        Quick Actions
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="group flex items-start gap-4 rounded-xl border border-border-dark bg-surface-dark p-5 hover:border-primary/50 transition-all cursor-pointer">
+<div class="rounded-lg bg-primary/10 p-3 text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-white text-base font-bold">Update Pricing</h3>
+<p class="text-[#bab09c] text-sm leading-relaxed">Modify tier rates across all halls for upcoming slots.</p>
+</div>
+</div>
+<div class="group flex items-start gap-4 rounded-xl border border-border-dark bg-surface-dark p-5 hover:border-primary/50 transition-all cursor-pointer">
+<div class="rounded-lg bg-primary/10 p-3 text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-white text-base font-bold">Add New Movie</h3>
+<p class="text-[#bab09c] text-sm leading-relaxed">Upload DCP assets and trailer metadata.</p>
+</div>
+</div>
+<div class="group flex items-start gap-4 rounded-xl border border-border-dark bg-surface-dark p-5 hover:border-primary/50 transition-all cursor-pointer">
+<div class="rounded-lg bg-primary/10 p-3 text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">assessment</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-white text-base font-bold">Sales Report</h3>
+<p class="text-[#bab09c] text-sm leading-relaxed">Export performance analytics and daily logs.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Daily Screening Schedule -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schedule</span>
+                            Daily Screening Schedule
+                        </h2>
+<div class="flex items-center gap-3">
+<div class="flex bg-surface-dark rounded-lg p-1 border border-border-dark">
+<button class="px-3 py-1 text-xs font-bold rounded-md bg-primary text-background-dark">Timeline</button>
+<button class="px-3 py-1 text-xs font-bold text-[#bab09c] hover:text-white">List View</button>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-dark border border-border-dark text-white text-sm font-medium">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                                Filter Halls
+                            </button>
+</div>
+</div>
+<!-- Timeline UI -->
+<div class="rounded-xl border border-border-dark bg-surface-dark overflow-hidden flex flex-col">
+<!-- Timeline Header (Time) -->
+<div class="flex border-b border-border-dark">
+<div class="w-48 border-r border-border-dark p-4 flex flex-col justify-center bg-background-dark/20">
+<span class="text-[#bab09c] text-[10px] uppercase font-bold tracking-widest leading-none">Cinema Halls</span>
+<span class="text-white text-xs mt-1">Today, Oct 24</span>
+</div>
+<div class="flex-1 flex timeline-grid relative overflow-x-auto h-12 items-center px-4">
+<div class="min-w-full flex justify-between text-[10px] text-[#bab09c] font-medium">
+<span class="w-[100px]">10:00 AM</span>
+<span class="w-[100px]">12:00 PM</span>
+<span class="w-[100px]">02:00 PM</span>
+<span class="w-[100px]">04:00 PM</span>
+<span class="w-[100px]">06:00 PM</span>
+<span class="w-[100px]">08:00 PM</span>
+<span class="w-[100px]">10:00 PM</span>
+<span class="w-[100px]">12:00 AM</span>
+</div>
+</div>
+</div>
+<!-- Hall Rows -->
+<div class="flex-1 overflow-y-auto">
+<!-- Hall 01 -->
+<div class="flex border-b border-border-dark group h-32">
+<div class="w-48 border-r border-border-dark p-4 bg-background-dark/10 group-hover:bg-primary/5 transition-colors">
+<h4 class="text-white font-bold text-sm">Hall 01 - IMAX</h4>
+<p class="text-[#bab09c] text-[10px] mt-1">640 Seats | 4K Laser</p>
+</div>
+<div class="flex-1 p-4 relative timeline-grid">
+<!-- Screening Block 1 -->
+<div class="absolute left-10 top-4 w-[250px] bg-background-dark border-l-4 border-primary rounded-lg p-3 shadow-xl cursor-grab active:cursor-grabbing hover:bg-[#2c2820] transition-colors">
+<div class="flex justify-between items-start mb-2">
+<h5 class="text-white text-xs font-bold truncate">Dune: Part Two</h5>
+<span class="text-[10px] bg-primary/20 text-primary px-1.5 py-0.5 rounded">3h 15m</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-[9px] text-[#bab09c] uppercase font-bold">
+<span>Section Sales</span>
+<span class="text-primary">82% Sold</span>
+</div>
+<!-- Segmented Progress Bar -->
+<div class="flex h-1.5 gap-0.5 w-full">
+<div class="flex-1 bg-primary rounded-l-full"></div>
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary/40"></div>
+<div class="flex-1 bg-border-dark rounded-r-full"></div>
+</div>
+</div>
+</div>
+<!-- Screening Block 2 -->
+<div class="absolute left-[380px] top-4 w-[180px] bg-background-dark border-l-4 border-emerald-500 rounded-lg p-3 shadow-xl hover:bg-[#2c2820] transition-colors opacity-90">
+<div class="flex justify-between items-start mb-2">
+<h5 class="text-white text-xs font-bold truncate">Inside Out 2</h5>
+<span class="text-[10px] bg-emerald-500/20 text-emerald-500 px-1.5 py-0.5 rounded">1h 45m</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex h-1.5 gap-0.5 w-full">
+<div class="flex-1 bg-emerald-500 rounded-l-full"></div>
+<div class="flex-1 bg-emerald-500"></div>
+<div class="flex-1 bg-emerald-500"></div>
+<div class="flex-1 bg-emerald-500 rounded-r-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hall 02 -->
+<div class="flex border-b border-border-dark group h-32">
+<div class="w-48 border-r border-border-dark p-4 bg-background-dark/10 group-hover:bg-primary/5 transition-colors">
+<h4 class="text-white font-bold text-sm">Hall 02 - Atmos</h4>
+<p class="text-[#bab09c] text-[10px] mt-1">320 Seats | Dolby</p>
+</div>
+<div class="flex-1 p-4 relative timeline-grid">
+<div class="absolute left-[180px] top-4 w-[220px] border border-dashed border-border-dark rounded-lg flex items-center justify-center text-[#bab09c] text-xs h-[72px] bg-white/5">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">add</span> Drop Movie Here</span>
+</div>
+<div class="absolute left-[440px] top-4 w-[220px] bg-background-dark border-l-4 border-red-500 rounded-lg p-3 shadow-xl">
+<div class="flex justify-between items-start mb-2">
+<h5 class="text-white text-xs font-bold truncate">Interstellar (Re-issue)</h5>
+<span class="text-[10px] bg-red-500/20 text-red-500 px-1.5 py-0.5 rounded">2h 49m</span>
+</div>
+<div class="flex h-1.5 gap-0.5 w-full mt-3">
+<div class="flex-1 bg-red-500 rounded-l-full"></div>
+<div class="flex-1 bg-border-dark"></div>
+<div class="flex-1 bg-border-dark"></div>
+<div class="flex-1 bg-border-dark rounded-r-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- User Activity Sidebar -->
+<aside class="w-80 border-l border-border-dark bg-background-dark shrink-0 flex flex-col p-6 overflow-hidden">
+<h2 class="text-white text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sensors</span>
+                Live Activity
+            </h2>
+<div class="flex-1 flex flex-col gap-6 overflow-y-auto pr-2">
+<!-- Activity Item -->
+<div class="flex gap-4 relative">
+<div class="h-full w-px bg-border-dark absolute left-5 top-10"></div>
+<div class="size-10 shrink-0 rounded-full border-2 border-primary bg-primary/20 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-primary text-xl">confirmation_number</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-white text-xs font-medium"><span class="text-primary font-bold">New Booking</span> - Hall 01</p>
+<p class="text-[#bab09c] text-[11px] leading-snug">User <span class="text-white">@johndoe</span> booked Seat B12 for 'Dune: Part Two'</p>
+<span class="text-[#bab09c] text-[10px] mt-1 uppercase font-bold">Just now</span>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="h-full w-px bg-border-dark absolute left-5 top-10"></div>
+<div class="size-10 shrink-0 rounded-full border-2 border-emerald-500 bg-emerald-500/20 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-emerald-500 text-xl">person_add</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-white text-xs font-medium">New User Registration</p>
+<p class="text-[#bab09c] text-[11px] leading-snug">Sarah Jenkins joined OmniView Rewards program.</p>
+<span class="text-[#bab09c] text-[10px] mt-1 uppercase font-bold">4 mins ago</span>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="h-full w-px bg-border-dark absolute left-5 top-10"></div>
+<div class="size-10 shrink-0 rounded-full border-2 border-primary bg-primary/20 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-primary text-xl">payments</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-white text-xs font-medium">Bulk Corporate Order</p>
+<p class="text-[#bab09c] text-[11px] leading-snug">50 tickets purchased for 'Inside Out 2' at 06:00 PM.</p>
+<span class="text-[#bab09c] text-[10px] mt-1 uppercase font-bold">12 mins ago</span>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="size-10 shrink-0 rounded-full border-2 border-border-dark bg-surface-dark flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[#bab09c] text-xl">notifications_paused</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-white text-xs font-medium">Maintenance Alert</p>
+<p class="text-[#bab09c] text-[11px] leading-snug">Hall 04 projector scheduled for routine cleaning at 01:00 AM.</p>
+<span class="text-[#bab09c] text-[10px] mt-1 uppercase font-bold">1 hr ago</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-border-dark">
+<div class="bg-surface-dark rounded-xl p-4">
+<div class="flex justify-between items-center mb-4">
+<span class="text-white text-xs font-bold">Occupancy Overview</span>
+<span class="text-primary text-xs font-bold">78%</span>
+</div>
+<div class="flex h-3 w-full bg-border-dark rounded-full overflow-hidden">
+<div class="bg-primary w-[40%]" title="VIP"></div>
+<div class="bg-primary/70 w-[20%]" title="Premium"></div>
+<div class="bg-primary/40 w-[15%]" title="Standard"></div>
+<div class="bg-primary/20 w-[3%]" title="Budget"></div>
+</div>
+<div class="flex justify-between mt-3">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-[10px] text-[#bab09c]">VIP</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-primary/40"></span>
+<span class="text-[10px] text-[#bab09c]">Std</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-border-dark"></span>
+<span class="text-[10px] text-[#bab09c]">Free</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OmniView Cinema - Seat Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                        "seat-available": "#22c55e",
+                        "seat-occupied": "#3f3f46",
+                        "seat-selected": "#eab308",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+        .seat-grid {
+            perspective: 1000px;
+        }
+        .screen-curve {
+            height: 10px;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(50, 17, 212, 0.4), transparent);
+            border-radius: 50% / 100% 100% 0 0;
+            box-shadow: 0 -10px 40px -10px rgba(50, 17, 212, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-white transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] dark:text-white text-slate-900">OmniView Cinema</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-[#a19db9] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Movies</a>
+<a class="text-[#a19db9] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Cinemas</a>
+<a class="text-[#a19db9] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Offers</a>
+<a class="text-[#a19db9] hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Support</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold transition-transform active:scale-95">
+<span>Login</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-white/10 text-white text-sm font-bold border border-white/10 hover:bg-white/20 transition-all">
+<span>Sign Up</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Seat Map -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap gap-2 text-sm font-medium">
+<a class="text-[#a19db9] hover:text-white" href="#">Home</a>
+<span class="text-[#a19db9]">/</span>
+<a class="text-[#a19db9] hover:text-white" href="#">Movies</a>
+<span class="text-[#a19db9]">/</span>
+<span class="text-white">Seat Selection</span>
+</nav>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-3">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-4xl font-black leading-tight tracking-tight">The Dark Knight Returns</h1>
+<p class="text-[#a19db9] text-base font-normal">The Grand Theater - Screen 4 | Today, 8:30 PM</p>
+</div>
+<div class="flex items-center gap-2 bg-white/5 p-2 rounded-lg border border-white/10">
+<span class="material-symbols-outlined text-primary">info</span>
+<span class="text-xs text-[#a19db9]">Taxes &amp; fees calculated at checkout</span>
+</div>
+</div>
+<!-- Seat Selection Area -->
+<div class="bg-black/20 rounded-xl p-8 border border-white/5 relative overflow-hidden">
+<!-- Cinema Screen Indicator -->
+<div class="flex flex-col items-center mb-16">
+<div class="screen-curve max-w-[600px] mb-2"></div>
+<span class="text-[10px] uppercase tracking-[0.3em] text-[#a19db9] font-bold">Screen This Way</span>
+</div>
+<!-- Seat Grid Split into Sections -->
+<div class="grid grid-cols-2 gap-x-12 gap-y-12 seat-grid max-w-[800px] mx-auto">
+<!-- Top Left Section ($20) -->
+<div class="space-y-4">
+<p class="text-[10px] text-[#a19db9] uppercase text-center mb-2">Top Left ($20)</p>
+<div class="grid grid-cols-6 gap-2">
+<!-- Generation of seats -->
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-selected shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+</div>
+</div>
+<!-- Top Right Section ($20) -->
+<div class="space-y-4">
+<p class="text-[10px] text-[#a19db9] uppercase text-center mb-2">Top Right ($20)</p>
+<div class="grid grid-cols-6 gap-2">
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-selected shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+</div>
+</div>
+<!-- Bottom Left Section ($10) -->
+<div class="space-y-4">
+<p class="text-[10px] text-[#a19db9] uppercase text-center mb-2">Bottom Left ($10)</p>
+<div class="grid grid-cols-6 gap-2">
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+</div>
+</div>
+<!-- Bottom Right Section ($10) -->
+<div class="space-y-4">
+<p class="text-[10px] text-[#a19db9] uppercase text-center mb-2">Bottom Right ($10)</p>
+<div class="grid grid-cols-6 gap-2">
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-occupied"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+<div class="w-6 h-6 rounded bg-seat-available border border-white/10 hover:scale-110 cursor-pointer transition-transform"></div>
+</div>
+</div>
+</div>
+<!-- Map Legend -->
+<div class="mt-16 flex flex-wrap justify-center gap-8 border-t border-white/5 pt-8">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded bg-seat-available border border-white/10"></div>
+<span class="text-sm text-[#a19db9]">Available</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded bg-seat-occupied"></div>
+<span class="text-sm text-[#a19db9]">Occupied</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded bg-seat-selected shadow-[0_0_8px_rgba(234,179,8,0.5)]"></div>
+<span class="text-sm text-[#a19db9]">Selected</span>
+</div>
+</div>
+</div>
+<!-- Pricing Chips -->
+<div class="flex flex-col gap-4">
+<p class="text-sm font-bold uppercase tracking-wider text-white/40">Pricing Tiers</p>
+<div class="flex flex-wrap gap-3">
+<div class="flex h-10 items-center gap-x-3 rounded-xl bg-white/5 border border-white/10 pl-3 pr-5">
+<span class="material-symbols-outlined text-seat-selected text-lg">workspace_premium</span>
+<p class="text-white text-sm font-medium">Top Section ($20)</p>
+</div>
+<div class="flex h-10 items-center gap-x-3 rounded-xl bg-white/5 border border-white/10 pl-3 pr-5">
+<span class="material-symbols-outlined text-primary text-lg">star</span>
+<p class="text-white text-sm font-medium">Side Sections ($15)</p>
+</div>
+<div class="flex h-10 items-center gap-x-3 rounded-xl bg-white/5 border border-white/10 pl-3 pr-5">
+<span class="material-symbols-outlined text-[#a19db9] text-lg">theater_comedy</span>
+<p class="text-white text-sm font-medium">Bottom Section ($10)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Order Summary -->
+<div class="lg:col-span-4">
+<div class="bg-white/5 border border-white/10 rounded-xl p-6 sticky top-28 space-y-6">
+<div class="flex gap-4 border-b border-white/10 pb-6">
+<div class="w-20 h-28 rounded-lg bg-cover bg-center shrink-0 shadow-xl" data-alt="Movie poster for The Dark Knight Returns" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9WlPGUHFnu6nqk2hocKfayF5Rt7cDZDoD535r0vmFafL85zJI46W1UTlYh6FDEtDreLetGrel8nxqjz_KZ52Zl0ZanmPj7a_CH_XOI98zZ5sCsK5gUAkogtRcyL1kQerVU_Qw3mqWphOUOr5OTxjo3xPyLvNgYB9E1K2cvpomnG7xwJndKf2k4MgVsCMRLFh4XGWLu4GIUePHAj7t8N8IVrHK3Am_gwK_VXmV5-3q3KDkMWilyMfCwn6DKUqxQbhnCwlliAElwk2S");'></div>
+<div class="flex flex-col justify-center">
+<h3 class="font-bold text-lg leading-tight">The Dark Knight Returns</h3>
+<p class="text-sm text-[#a19db9]">English, 2D</p>
+<p class="text-xs text-primary mt-1 font-semibold uppercase tracking-widest">IMAX Premium</p>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-sm font-bold uppercase tracking-wider text-white/40">Order Summary</h4>
+<!-- Selected Seats List -->
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-seat-selected text-sm">event_seat</span>
+<span>Row F - Seat 12 (Top)</span>
+</div>
+<span class="font-semibold">$20.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-seat-selected text-sm">event_seat</span>
+<span>Row F - Seat 13 (Top)</span>
+</div>
+<span class="font-semibold">$20.00</span>
+</div>
+</div>
+<div class="pt-4 border-t border-white/5 space-y-2">
+<div class="flex justify-between text-sm text-[#a19db9]">
+<span>Subtotal</span>
+<span>$40.00</span>
+</div>
+<div class="flex justify-between text-sm text-[#a19db9]">
+<span>Booking Fee</span>
+<span>$4.50</span>
+</div>
+<div class="flex justify-between text-xl font-bold pt-2">
+<span>Total</span>
+<span class="text-primary">$44.50</span>
+</div>
+</div>
+</div>
+<div class="pt-4 space-y-3">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">login</span>
+                        Login to Checkout
+                    </button>
+<p class="text-[10px] text-center text-[#a19db9] leading-relaxed">
+                        By proceeding, you agree to our Terms of Service and Privacy Policy. All sales are final.
+                    </p>
+</div>
+<!-- Mini Map / Location Preview -->
+<div class="pt-4">
+<p class="text-[10px] text-[#a19db9] mb-2 uppercase font-bold">Theater Location</p>
+<div class="w-full h-24 bg-center bg-no-repeat bg-cover rounded-lg border border-white/10 opacity-60 grayscale" data-alt="Map showing theater location" data-location="The Grand Theater" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUbQSNRckGEhBEN77E4INuVo0VPo3nc9OoTeffAHpZaAU4gkaZOvkQXNdmEn--C-eMSQQ_wy_eGYmtwhLbOOhLnwTX4Wv_7Fmj7aGY_kSp9w0-sbE8r518uWoiYb3_8BcQbyKLqPNUk-U8YmVTuc3P8u5C5KaomiM8LhnmP7PBS-Co9uZgCmxx8qF9e3cYqk9JtmAfD-yOn1BknQ9H8bXrMkcVqM0uoaIckEIpL-KM3u4b9iYGliaUo16Mt2-b--1iP7Ba2n5RS_sH");'></div>
+<p class="text-[11px] text-[#a19db9] mt-2">123 Cinema Way, Metropolitan Plaza, Level 4</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer for context -->
+<footer class="max-w-[1440px] mx-auto px-6 py-12 border-t border-white/5 text-[#a19db9] text-xs">
+<div class="flex flex-wrap justify-between gap-8">
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-white">
+<div class="size-4 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-bold">OmniView Cinema System</span>
+</div>
+<p class="max-w-xs">Premium cinematic experiences delivered with cutting edge technology and comfort.</p>
+</div>
+<div class="flex gap-12">
+<div class="space-y-2">
+<p class="text-white font-bold">Navigation</p>
+<p>Schedule</p>
+<p>Gift Cards</p>
+<p>Membership</p>
+</div>
+<div class="space-y-2">
+<p class="text-white font-bold">Support</p>
+<p>Contact Us</p>
+<p>FAQ</p>
+<p>Lost &amp; Found</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-4">
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-white">social_leaderboard</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-white">share</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-white">language</span>
+</div>
+<p>© 2024 OmniView Cinema. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body></html>
