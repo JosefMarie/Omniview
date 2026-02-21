@@ -1,0 +1,9 @@
+{
+    "name": "omniview-cinema-root",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "build:client": "npm run build --prefix client",
+        "deploy": "npm run build:client && firebase deploy"
+    }
+}
