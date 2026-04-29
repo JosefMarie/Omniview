@@ -1,9 +1,8 @@
 // ============================================================
 // FIREBASE CONFIGURATION
-// Replace the values below with your Firebase project config.
-// You can find these in: Firebase Console → Project Settings → Your Apps
+// Safely initialized to prevent duplicate app errors in HMR
 // ============================================================
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
@@ -17,7 +16,18 @@ const firebaseConfig = {
   measurementId: "G-RHE5PVW6BP"
 };
 
-const app = initializeApp(firebaseConfig);
+let app;
+try {
+  if (getApps().length === 0) {
+    app = initializeApp(firebaseConfig);
+    console.log("Firebase initialized successfully");
+  } else {
+    app = getApp();
+    console.log("Using existing Firebase app");
+  }
+} catch (error) {
+  console.error("Firebase initialization failed:", error);
+}
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);

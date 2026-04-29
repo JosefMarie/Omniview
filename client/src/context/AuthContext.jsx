@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
+import { requestNotificationPermission } from '../services/notificationService';
 
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -24,7 +25,13 @@ export const AuthProvider = ({ children }) => {
             if (firebaseUser) {
                 // Fetch extra user data from Firestore
                 const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-                setUser({ ...firebaseUser, role: userDoc.exists() ? userDoc.data().role : 'user' });
+                const userData = { ...firebaseUser, role: userDoc.exists() ? userDoc.data().role : 'user' };
+                setUser(userData);
+                
+                // Register for push notifications
+                setTimeout(() => {
+                    requestNotificationPermission(firebaseUser.uid);
+                }, 2000);
             } else {
                 setUser(null);
             }
